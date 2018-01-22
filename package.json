@@ -1,0 +1,25 @@
+{
+  "name": "groceryapi",
+  "version": "1.0.0",
+  "description": "Grocery Rest API using JavaScript and nodejs and mongodb",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/saddamGitHub123/groceryAPI.git"
+  },
+  "author": "Sk Saddam Hosan",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/saddamGitHub123/groceryAPI/issues"
+  },
+  "homepage": "https://github.com/saddamGitHub123/groceryAPI#readme",
+  "dependencies": {
+    "body-parser": "*",
+    "express": "^4.16.2",
+    "mongoose": "*",
+    "mysql": "^2.15.0"
+  }
+}
