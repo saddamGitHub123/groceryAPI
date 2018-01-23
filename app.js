@@ -1,5 +1,3 @@
-
-
 var express = require('express');
 
 var path = require('path');
@@ -11,7 +9,7 @@ const mysql = require('mysql');
 app.use(bodyParser.json());
 
 //include the file
-
+//this is usign for testing class
 Genre = require('./models/genre');
 
 Book = require('./models/book');
@@ -20,7 +18,17 @@ Book = require('./models/book');
 
 //use middleware
 
+
 //define routes
+
+//for testing api
+app.use('/api/test',require('./testRouter/test'));
+
+
+
+
+
+
 
 //create connection  mysql
 
@@ -58,125 +66,16 @@ app.get('/createdb', (req, res) => {
 mongoose.connect('mongodb://localhost/bookstore');
 var db = mongoose.connection;
 
+
+//this is root api for testing
 app.get('/',function(req,res){
     debugger;
     res.send('PLEASE USE /api/books');
 });
 
-app.get('/api/genres',function(req,res){
-
-    debugger;
-    Genre.getGenres(function(err,genres){
-        if(err){
-            throw err;
-        }
-        res.json(genres);
-    });
-
-});
 
 
-//add genre
-app.post('/api/genres',function(req,res){
-    
-    var genre = req.body;
-            Genre.addGenre(genre,function(err,genre){
-            if(err){
-                throw err;
-            }
-            res.json(genre);
-        });
-    
-    });
-
-
-    //update the genres table
-app.put('/api/genres/:_id', function(req,res){
-    
-    var id = req.params._id;
-    var genre = req.body;
-    console.log(genre);
-        Genre.updateGenre(id, genre, {}, function(err,genre){
-            if(err){
-                throw err;
-            }
-            res.json(genre);
-        });
-    
-    });
-
-       //delete the genres table
-app.delete('/api/genres/:_id', function(req,res){
-    
-    var id = req.params._id;
-   
-        Genre.deleteGenre(id, function(err,genre){
-            if(err){
-                throw err;
-            }
-            res.json(genre);
-        });
-    
-    });
-
-
-   //get all book from mongodb 
-app.get('/api/books',function(req,res){
-    
-        Book.getBooks(function(err,books){
-            if(err){
-                throw err;
-            }
-            res.json(books);
-        });
-    
-    });
-
-//add the new book
-    app.post('/api/books',function(req,res){
-        
-        var book = req.body;
-        console.log(book);
-            Book.addBook(book, function(err,book){
-                if(err){
-                    throw err;
-                }
-                res.json(book);
-            });
-        
-        });
-
-
-
-
-
-    app.get('/api/books/:id',function(req,res){
-        
-            Book.getBookById(req.params.id,function(err,book){
-                if(err){
-                    throw err;
-                }
-                res.json(book);
-            });
-        
-        });
-
-        //update the book object using id
-
-        app.put('/api/books/:_id',function(req,res){
-
-            var id = req.params._id;
-            var book = req.body;
-            console.log(book);
-
-                Book.updateBook(id, book, {}, function(err,book){
-                    if(err){
-                        throw err;
-                    }
-                    res.json(book);
-                });
-            
-            });
+//Server running
 
 app.listen(3000,function(){
 
